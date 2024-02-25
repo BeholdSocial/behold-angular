@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import addScript from './addScript';
 
 @Component({
@@ -10,7 +10,8 @@ import addScript from './addScript';
   ></div>`,
 })
 export class BeholdWidgetComponent {
-  feedId = '';
+  @Input() feedId = '';
+  @Output() load = new EventEmitter<void>();
 
   ngOnInit() {
     addScript();
@@ -23,6 +24,9 @@ export class BeholdWidgetComponent {
       if (placeholderEl instanceof HTMLElement) {
         const widgetEl = document.createElement('behold-widget');
         widgetEl.setAttribute('feed-id', placeholderEl.dataset['feedid'] || '');
+        widgetEl.addEventListener('load', () => {
+          this.load.emit();
+        });
         placeholderEl.replaceWith(widgetEl);
       }
     });
