@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import addScript from './addScript';
 
 @Component({
-  selector: 'behold-widget',
+  selector: 'ngx-behold-widget',
   standalone: true,
   template: `<div
     class="behold-sdk-angular-widget-placeholder"
