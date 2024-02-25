@@ -9,12 +9,19 @@ import {
 @Component({
   selector: 'ngx-behold-widget',
   standalone: true,
-  template: `<behold-widget [attr.feed-id]="feedId"></behold-widget>`,
+  template: `<behold-widget
+    [attr.feed-id]="feedId"
+    (load)="onLoad()"
+  ></behold-widget>`,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BeholdWidgetComponent {
   @Input() feedId = '';
   @Output() load = new EventEmitter<void>();
+
+  onLoad() {
+    this.load.emit();
+  }
 
   ngOnInit() {
     const existingScriptEl = document.querySelector(
