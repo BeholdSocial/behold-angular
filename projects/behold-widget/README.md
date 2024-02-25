@@ -41,8 +41,8 @@ The Behold widget component accepts a single property: `feedId`, which can be fo
 
 All configuration and customization is handled in the Behold admin. When you make changes there it will automatically update your widget, no code modifications required. Because of browser caching, changes can take a minute or two to show up. Clearing your cache and incognito/private windows will help.
 
-![Behold feed settings page](./readme-images/find-your-feed-id-1.png)
-![Behold feed embed code page](./readme-images/find-your-feed-id-2.png)
+![Behold feed settings page](../../readme-images/find-your-feed-id-1.png)
+![Behold feed embed code page](../../readme-images/find-your-feed-id-2.png)
 
 ## Load event
 
