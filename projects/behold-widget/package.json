@@ -1,6 +1,26 @@
 {
   "name": "@behold/angular",
-  "version": "0.1.7",
+  "version": "0.1.10",
+  "description": "The official Behold Widget for Angular",
+  "keywords": [
+    "Behold",
+    "Angular",
+    "SDK",
+    "Instagram",
+    "widget",
+    "embedded widget",
+    "web components"
+  ],
+  "homepage": "https://behold.so",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeholdSocial/behold-angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BeholdSocial/behold-angular/issues"
+  },
+  "author": "Griffin Johnston",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0"
