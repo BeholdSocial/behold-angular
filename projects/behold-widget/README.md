@@ -26,30 +26,38 @@ yarn add @behold/angular
 ### 1. Import the component
 
 ```js
-import BeholdWidget from "@behold/angular";
+import { BeholdWidgetComponent } from "@behold/angular";
 ```
 
 ### 2. Add to your app
 
-Use it like you would any other Angular component:
+Use it like you would any standalone Angular component:
+
+```js
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, BeholdWidgetComponent],
+  bootstrap: [AppComponent],
+})
+```
 
 ```html
-<BeholdWidget feedId="YOUR_FEED_ID" />
+<ngx-behold-widget [feedId]="'YOUR_FEED_ID'" />
 ```
 
 The Behold widget component accepts a single property: `feedId`, which can be found by opening your feed in the [Behold dashboard](https://app.behold.so) and clicking on "Embed Code".
 
 All configuration and customization is handled in the Behold admin. When you make changes there it will automatically update your widget, no code modifications required. Because of browser caching, changes can take a minute or two to show up. Clearing your cache and incognito/private windows will help.
 
-![Behold feed settings page](../../readme-images/find-your-feed-id-1.png)
-![Behold feed embed code page](../../readme-images/find-your-feed-id-2.png)
+![Behold feed settings page](https://raw.githubusercontent.com/BeholdSocial/behold-angular/main/readme-images/find-your-feed-id-1.png)
+![Behold feed embed code page](https://raw.githubusercontent.com/BeholdSocial/behold-angular/main/readme-images/find-your-feed-id-2.png)
 
 ## Load event
 
 This component emits a load event after its initial render. It can be used as follows:
 
-```js
-<BeholdWidget on:load={() => console.log("Loaded!")} feedId="YOUR_FEED_ID" />
+```html
+<ngx-behold-widget [feedId]="'YOUR_FEED_ID'" (load)="onLoad()" />
 ```
 
 ## A note about SSR
