@@ -1,34 +1,30 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import addScript from './addScript';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 
 @Component({
   selector: 'ngx-behold-widget',
   standalone: true,
-  template: `<div
-    class="behold-sdk-angular-widget-placeholder"
-    [attr.data-feedid]="feedId"
-  ></div>`,
+  template: `<behold-widget [attr.feed-id]="feedId"></behold-widget>`,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BeholdWidgetComponent {
   @Input() feedId = '';
   @Output() load = new EventEmitter<void>();
 
   ngOnInit() {
-    addScript();
-
-    const placeholderEls = document.querySelectorAll(
-      '.behold-sdk-angular-widget-placeholder'
+    const existingScriptEl = document.querySelector(
+      '[src*="https://w.behold.so/widget.js"]'
     );
+    if (existingScriptEl || customElements.get('behold-widget')) return;
 
-    placeholderEls.forEach((placeholderEl) => {
-      if (placeholderEl instanceof HTMLElement) {
-        const widgetEl = document.createElement('behold-widget');
-        widgetEl.setAttribute('feed-id', placeholderEl.dataset['feedid'] || '');
-        widgetEl.addEventListener('load', () => {
-          this.load.emit();
-        });
-        placeholderEl.replaceWith(widgetEl);
-      }
-    });
+    const scriptEl = document.createElement('script');
+    scriptEl.src = 'https://w.behold.so/widget.js';
+    scriptEl.type = 'module';
+    document.body.appendChild(scriptEl);
   }
 }
